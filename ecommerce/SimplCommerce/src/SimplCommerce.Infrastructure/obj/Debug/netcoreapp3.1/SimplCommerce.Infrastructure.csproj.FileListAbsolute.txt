@@ -1,0 +1,8 @@
+C:\Users\hecto\source\repos\SimplCommerce\src\SimplCommerce.Infrastructure\bin\Debug\netcoreapp3.1\SimplCommerce.Infrastructure.deps.json
+C:\Users\hecto\source\repos\SimplCommerce\src\SimplCommerce.Infrastructure\bin\Debug\netcoreapp3.1\SimplCommerce.Infrastructure.dll
+C:\Users\hecto\source\repos\SimplCommerce\src\SimplCommerce.Infrastructure\bin\Debug\netcoreapp3.1\SimplCommerce.Infrastructure.pdb
+C:\Users\hecto\source\repos\SimplCommerce\src\SimplCommerce.Infrastructure\obj\Debug\netcoreapp3.1\SimplCommerce.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\hecto\source\repos\SimplCommerce\src\SimplCommerce.Infrastructure\obj\Debug\netcoreapp3.1\SimplCommerce.Infrastructure.AssemblyInfo.cs
+C:\Users\hecto\source\repos\SimplCommerce\src\SimplCommerce.Infrastructure\obj\Debug\netcoreapp3.1\SimplCommerce.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\hecto\source\repos\SimplCommerce\src\SimplCommerce.Infrastructure\obj\Debug\netcoreapp3.1\SimplCommerce.Infrastructure.dll
+C:\Users\hecto\source\repos\SimplCommerce\src\SimplCommerce.Infrastructure\obj\Debug\netcoreapp3.1\SimplCommerce.Infrastructure.pdb
