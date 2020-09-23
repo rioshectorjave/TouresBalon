@@ -1,5 +1,6 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
-  
+FROM mcr.microsoft.com/dotnet/core/sdk:latest AS build-env
+#RUN service ntp restart 
+#RUN apt update --allow-releaseinfo-change  
 WORKDIR /app
 COPY . ./
 
