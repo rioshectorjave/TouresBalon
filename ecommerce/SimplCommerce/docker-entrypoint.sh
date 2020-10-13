@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
+echo "file config"
 
+tail -300 /apps/appsettings.json
 #if psql -h simpldb --username postgres -lqt | cut -d \| -f 1 | grep -qw simplcommerce; then
 #    echo "simplcommerce database existed"
 #else
