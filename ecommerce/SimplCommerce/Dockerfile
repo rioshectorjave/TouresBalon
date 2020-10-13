@@ -47,5 +47,5 @@ RUN curl -SL "https://github.com/rdvojmoc/DinkToPdf/raw/v1.0.8/v0.12.4/64%20bit/
 
 COPY --from=build-env /app/docker-entrypoint.sh /
 RUN chmod 755 /docker-entrypoint.sh
-
+COPY --from=build-env src/SimplCommerce.WebHost/appsettings.json /apps/appsettings.json
 ENTRYPOINT ["/docker-entrypoint.sh"]
