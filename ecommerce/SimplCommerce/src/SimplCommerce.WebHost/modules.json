@@ -30,11 +30,6 @@
     "version": "1.0.0"
   },
   {
-    "id": "SimplCommerce.Module.DinkToPdf",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
     "id": "SimplCommerce.Module.EmailSenderSmtp",
     "isBundledWithHost": true,
     "version": "1.0.0"
@@ -60,37 +55,12 @@
     "version": "1.0.0"
   },
   {
-    "id": "SimplCommerce.Module.PaymentBraintree",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
-    "id": "SimplCommerce.Module.PaymentCoD",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
     "id": "SimplCommerce.Module.PaymentPaypalExpress",
     "isBundledWithHost": true,
     "version": "1.0.0"
   },
   {
     "id": "SimplCommerce.Module.Payments",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
-    "id": "SimplCommerce.Module.PaymentStripe",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
-    "id": "SimplCommerce.Module.PaymentMomo",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
-    "id": "SimplCommerce.Module.PaymentNganLuong",
     "isBundledWithHost": true,
     "version": "1.0.0"
   },
@@ -171,11 +141,6 @@
   },
   {
     "id": "SimplCommerce.Module.Vendors",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
-    "id": "SimplCommerce.Module.WishList",
     "isBundledWithHost": true,
     "version": "1.0.0"
   }
