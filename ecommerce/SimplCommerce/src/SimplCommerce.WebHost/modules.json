@@ -110,17 +110,7 @@
     "version": "1.0.0"
   },
   {
-    "id": "SimplCommerce.Module.ShippingFree",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
     "id": "SimplCommerce.Module.ShippingPrices",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
-    "id": "SimplCommerce.Module.ShippingTableRate",
     "isBundledWithHost": true,
     "version": "1.0.0"
   },
