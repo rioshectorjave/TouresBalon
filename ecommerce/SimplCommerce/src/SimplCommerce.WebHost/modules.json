@@ -55,7 +55,7 @@
     "version": "1.0.0"
   },
   {
-    "id": "SimplCommerce.Module.PaymentPaypalExpress",
+    "id": "SimplCommerce.Module.PaymentCoD",
     "isBundledWithHost": true,
     "version": "1.0.0"
   },

@@ -15,7 +15,7 @@ $(function () {
         </div> \
         <div class="modal-body"> \
             <p>Cart is being locked for checkout.Please complete or cancel the checkout first </p> \
-            <p><a href="/checkout/shipping" class="btn btn btn-primary">Checkout</a></p> \
+            <p><a href="/checkout/payment" class="btn btn btn-primary">Checkout</a></p> \
         </div > ';
    
 
