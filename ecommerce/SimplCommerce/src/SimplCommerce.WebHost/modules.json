@@ -120,11 +120,6 @@
     "version": "1.0.0"
   },
   {
-    "id": "SimplCommerce.Module.Tax",
-    "isBundledWithHost": true,
-    "version": "1.0.0"
-  },
-  {
     "id": "SimplCommerce.Module.Vendors",
     "isBundledWithHost": true,
     "version": "1.0.0"
