@@ -220,7 +220,7 @@ namespace SimplCommerce.Module.Orders.Services
                 {
                     Product = cartItem.Product,
                     ProductPrice = productPrice,
-                    Quantity = cartItem.Quantity,
+                    Quantity = cartItem.Quantity
                 };
 
                 var discountedItem = checkingDiscountResult.DiscountedProducts.FirstOrDefault(x => x.Id == cartItem.ProductId);
@@ -281,7 +281,7 @@ namespace SimplCommerce.Module.Orders.Services
                     {
                         Product = cartItem.Product,
                         ProductPrice = productPrice,
-                        Quantity = cartItem.Quantity,
+                        Quantity = cartItem.Quantity
                     };
 
                     if (cart.IsProductPriceIncludeTax)
