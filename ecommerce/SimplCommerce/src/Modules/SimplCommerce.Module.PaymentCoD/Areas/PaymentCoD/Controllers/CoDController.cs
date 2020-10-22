@@ -53,7 +53,7 @@ namespace SimplCommerce.Module.PaymentCoD.Areas.PaymentCoD.Controllers
                 return Redirect("~/checkout/payment");
             }
 
-            var orderCreateResult = await _orderService.CreateOrder(cart.Id, "CashOnDelivery");
+            var orderCreateResult = await _orderService.CreateOrder(cart.Id, "CashOnDelivery", 0);
 
             if (!orderCreateResult.Success)
             {

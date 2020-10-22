@@ -48,7 +48,7 @@ namespace SimplCommerce.Module.Orders.Services
             _mediator = mediator;
         }
 
-        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, OrderStatus orderStatus = OrderStatus.New)
+        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, decimal paymentFeeAmount, OrderStatus orderStatus = OrderStatus.New)
         {
             var cart = await _cartRepository
                .Query()
@@ -128,10 +128,10 @@ namespace SimplCommerce.Module.Orders.Services
                 billingAddress = _userAddressRepository.Query().Where(x => x.Id == shippingData.BillingAddressId).Select(x => x.Address).First();
             }
 
-            return await CreateOrder(cartId, paymentMethod, billingAddress, orderStatus);
+            return await CreateOrder(cartId, paymentMethod, paymentFeeAmount, billingAddress, orderStatus);
         }
 
-        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, Address billingAddress, OrderStatus orderStatus = OrderStatus.New)
+        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, decimal paymentFeeAmount, Address billingAddress, OrderStatus orderStatus = OrderStatus.New)
         {
             var cart = _cartRepository
                 .Query()
