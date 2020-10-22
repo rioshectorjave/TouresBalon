@@ -200,7 +200,7 @@
                 <form asp-area="Core" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a asp-area="Core" asp-controller="Manage" asp-action="Index" title="Manage">"Hola {0}!", (await WorkContext.GetCurrentUser()).FullName</a>
+                            <a asp-area="Core" asp-controller="Manage" asp-action="Index" title="Manage">@Localizer["Hola {0}!", (await WorkContext.GetCurrentUser()).FullName]</a>
                         </li>
                         <li>
                             <button type="submit" class="btn btn-link navbar-btn navbar-link">Cerrar Sesión</button>
