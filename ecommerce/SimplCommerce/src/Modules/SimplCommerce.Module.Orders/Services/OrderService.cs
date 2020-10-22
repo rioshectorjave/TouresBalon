@@ -48,7 +48,7 @@ namespace SimplCommerce.Module.Orders.Services
             _mediator = mediator;
         }
 
-        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, decimal paymentFeeAmount, OrderStatus orderStatus = OrderStatus.New)
+        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, OrderStatus orderStatus = OrderStatus.New)
         {
             var cart = await _cartRepository
                .Query()
@@ -128,10 +128,10 @@ namespace SimplCommerce.Module.Orders.Services
                 billingAddress = _userAddressRepository.Query().Where(x => x.Id == shippingData.BillingAddressId).Select(x => x.Address).First();
             }
 
-            return await CreateOrder(cartId, paymentMethod, paymentFeeAmount, shippingData.ShippingMethod, billingAddress, shippingAddress, orderStatus);
+            return await CreateOrder(cartId, paymentMethod, billingAddress, orderStatus);
         }
 
-        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, decimal paymentFeeAmount, string shippingMethodName, Address billingAddress, Address shippingAddress, OrderStatus orderStatus = OrderStatus.New)
+        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, Address billingAddress, OrderStatus orderStatus = OrderStatus.New)
         {
             var cart = _cartRepository
                 .Query()
@@ -164,19 +164,6 @@ namespace SimplCommerce.Module.Orders.Services
                 Phone = billingAddress.Phone
             };
 
-            var orderShippingAddress = new OrderAddress()
-            {
-                AddressLine1 = shippingAddress.AddressLine1,
-                AddressLine2 = shippingAddress.AddressLine2,
-                ContactName = shippingAddress.ContactName,
-                CountryId = shippingAddress.CountryId,
-                StateOrProvinceId = shippingAddress.StateOrProvinceId,
-                DistrictId = shippingAddress.DistrictId,
-                City = shippingAddress.City,
-                ZipCode = shippingAddress.ZipCode,
-                Phone = shippingAddress.Phone
-            };
-
             var order = new Order
             {
                 Customer = cart.Customer,
@@ -185,9 +172,7 @@ namespace SimplCommerce.Module.Orders.Services
                 LatestUpdatedOn = DateTimeOffset.Now,
                 LatestUpdatedById = cart.CreatedById,
                 BillingAddress = orderBillingAddress,
-                ShippingAddress = orderShippingAddress,
-                PaymentMethod = paymentMethod,
-                PaymentFeeAmount = paymentFeeAmount
+                PaymentMethod = paymentMethod
             };
 
             foreach (var cartItem in cart.Items)
@@ -254,7 +239,6 @@ namespace SimplCommerce.Module.Orders.Services
                     LatestUpdatedOn = DateTimeOffset.Now,
                     LatestUpdatedById = cart.CreatedById,
                     BillingAddress = orderBillingAddress,
-                    ShippingAddress = orderShippingAddress,
                     VendorId = vendorId,
                     Parent = order
                 };
