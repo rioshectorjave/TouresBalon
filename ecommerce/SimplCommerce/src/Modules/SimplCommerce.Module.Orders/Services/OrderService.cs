@@ -128,10 +128,10 @@ namespace SimplCommerce.Module.Orders.Services
                 billingAddress = _userAddressRepository.Query().Where(x => x.Id == shippingData.BillingAddressId).Select(x => x.Address).First();
             }
 
-            return await CreateOrder(cartId, paymentMethod, paymentFeeAmount, billingAddress, orderStatus);
+            return await CreateOrder(cartId, paymentMethod, paymentFeeAmount, shippingData.ShippingMethod, billingAddress, shippingAddress, orderStatus);
         }
 
-        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, decimal paymentFeeAmount, Address billingAddress, OrderStatus orderStatus = OrderStatus.New)
+        public async Task<Result<Order>> CreateOrder(long cartId, string paymentMethod, decimal paymentFeeAmount, string shippingMethodName, Address billingAddress, Address shippingAddress, OrderStatus orderStatus = OrderStatus.New)
         {
             var cart = _cartRepository
                 .Query()
@@ -164,6 +164,19 @@ namespace SimplCommerce.Module.Orders.Services
                 Phone = billingAddress.Phone
             };
 
+            var orderShippingAddress = new OrderAddress()
+            {
+                AddressLine1 = shippingAddress.AddressLine1,
+                AddressLine2 = shippingAddress.AddressLine2,
+                ContactName = shippingAddress.ContactName,
+                CountryId = shippingAddress.CountryId,
+                StateOrProvinceId = shippingAddress.StateOrProvinceId,
+                DistrictId = shippingAddress.DistrictId,
+                City = shippingAddress.City,
+                ZipCode = shippingAddress.ZipCode,
+                Phone = shippingAddress.Phone
+            };
+
             var order = new Order
             {
                 Customer = cart.Customer,
@@ -172,7 +185,9 @@ namespace SimplCommerce.Module.Orders.Services
                 LatestUpdatedOn = DateTimeOffset.Now,
                 LatestUpdatedById = cart.CreatedById,
                 BillingAddress = orderBillingAddress,
-                PaymentMethod = paymentMethod
+                ShippingAddress = orderShippingAddress,
+                PaymentMethod = paymentMethod,
+                PaymentFeeAmount = paymentFeeAmount
             };
 
             foreach (var cartItem in cart.Items)
@@ -187,12 +202,9 @@ namespace SimplCommerce.Module.Orders.Services
                     return Result.Fail<Order>($"There are only {cartItem.Product.StockQuantity} items available for {cartItem.Product.Name}");
                 }
 
-                var productPrice = cartItem.Product.Price;
-
                 var orderItem = new OrderItem
                 {
                     Product = cartItem.Product,
-                    ProductPrice = productPrice,
                     Quantity = cartItem.Quantity
                 };
 
@@ -239,18 +251,17 @@ namespace SimplCommerce.Module.Orders.Services
                     LatestUpdatedOn = DateTimeOffset.Now,
                     LatestUpdatedById = cart.CreatedById,
                     BillingAddress = orderBillingAddress,
+                    ShippingAddress = orderShippingAddress,
                     VendorId = vendorId,
                     Parent = order
                 };
 
                 foreach (var cartItem in cart.Items.Where(x => x.Product.VendorId == vendorId))
                 {
-                    var productPrice = cartItem.Product.Price;
-
+                    
                     var orderItem = new OrderItem
                     {
                         Product = cartItem.Product,
-                        ProductPrice = productPrice,
                         Quantity = cartItem.Quantity
                     };
 
@@ -301,6 +312,21 @@ namespace SimplCommerce.Module.Orders.Services
                     item.Product.StockQuantity = item.Product.StockQuantity + item.Quantity;
                 }
             }
+        }
+
+        public async Task<decimal> GetTax(long cartId, string countryId, long stateOrProvinceId, string zipCode)
+        {
+            decimal taxAmount = 0;
+
+            var cartItems = _cartItemRepository.Query()
+                .Where(x => x.CartId == cartId)
+                .Select(x => new CartItemVm
+                {
+                    Quantity = x.Quantity,
+                    Price = x.Product.Price
+                }).ToList();
+
+            return taxAmount;
         }
 
         public async Task<OrderTaxAndShippingPriceVm> UpdateTaxAndShippingPrices(long cartId, TaxAndShippingPriceRequestVm model)
