@@ -110,7 +110,7 @@
     "version": "1.0.0"
   },
   {
-    "id": "SimplCommerce.Module.StorageLocal",
+    "id": "SimplCommerce.Module.StorageAmazonS3",
     "isBundledWithHost": true,
     "version": "1.0.0"
   },
